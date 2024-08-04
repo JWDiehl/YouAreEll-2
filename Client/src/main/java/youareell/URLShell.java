@@ -50,6 +50,7 @@ public class URLShell {
                 continue;
             if (commandLine.equals("exit")) {
                 System.out.println("\n*** Bye!\n");
+
                 break;
             }
 
