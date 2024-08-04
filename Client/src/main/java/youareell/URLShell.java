@@ -58,10 +58,12 @@ public class URLShell {
             for (int i = 0; i < commands.length; i++) {
                 //System.out.println(commands[i]); //***check to see if parsing/split worked***
                 list.add(commands[i]);
+                System.out.println(list);
 
             }
             //System.out.print(list); //***check to see if list was added correctly***
             history.add(commandLine);
+            System.out.println("history" + history);
             try {
                 //display history of shell with index
                 if (list.get(list.size() - 1).equals("history")) {
@@ -80,12 +82,58 @@ public class URLShell {
                 }
 
                 // messages
-                if (list.get(0).contains("messages")) {
+                if (list.get(0).contains("messages") && list.size() == 1) {
                     String results = urll.get_messages();
                     URLShell.prettyPrint(results);
                     continue;
                 }
                 // you need to add a bunch more.
+
+                if (list.get(0).contains("messages") && list.size() == 2) {
+                    String results = urll.get_messagesOfUser(list.get(1));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
+                if (list.get(0).contains("send") && list.contains("to") && list.size() > 3) {
+                    int indexOfUserTo = list.indexOf("to") + 1;
+
+                    String message = "";
+                    for (int i = 2; i < indexOfUserTo-1; i ++) {
+                        message += list.get(i) + " ";
+                    }
+
+                    String results = urll.sendMessageToUser(message, list.get(1), list.get(indexOfUserTo));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
+                if (list.get(0).contains("send") && list.size() == 3) {
+                    String message = "";
+                    for (int i = 2; i < list.size(); i++) {
+                        message += list.get(i);
+                    }
+
+                    String results = urll.sendMessage(list.get(1), message);
+                    System.out.println("1" + list.get(1));
+                    System.out.println ("2" + list.get(2));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
+                //method to post new ID TO SERVER
+                if (list.get(0).contains("id")) {
+                    String results = urll.postId(list.get(1), list.get(2), list.get(3));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
+                //method for PUT, for user
+                if (list.get(0).contains("id")) {
+                    String results = urll.putId(list.get(1), list.get(2), list.get(3));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
 
                 //!! command returns the last command in history
                 if (list.get(list.size() - 1).equals("!!")) {
