@@ -21,6 +21,7 @@ public class ServerController {
     }
 
     public static ServerController shared() {
+
         return svr;
     }
 
@@ -41,7 +42,7 @@ public class ServerController {
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             
 
-            if (method.equals("POST")) {
+            if (method.equals("POST") || method.equals("PUT")) {
                 // Send POST request using the body parameter
                 con.setDoOutput(true);
                 DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -74,10 +75,12 @@ public class ServerController {
     }
     
     public String getMessages() {
+
         return sendRequest("/messages", "GET", "");
     }
     
     public String getIds() {
+
         return sendRequest("/ids", "GET", "");
     }
 
@@ -90,6 +93,25 @@ public class ServerController {
 
     }
 
+    public String postId(String body) {
+        return sendRequest("/ids", "POST", body);
+    }
+
+    public String putId(String body) {
+        return sendRequest("/ids", "PUT", body);
+    }
+
+    public String sendMessage(String jsonBody, String fromid) {
+        return sendRequest("/ids/" + fromid + "/messages", "POST", jsonBody);
+    }
+
+    public String sendMessageToUser(String jsonBody, String fromid, String toid) {
+        return sendRequest("/ids/" + fromid + "/messages", "POST", jsonBody);
+    }
+
+    public String getMessagesOfUserName(String userName) {
+        return sendRequest("/ids/" + userName + "/messages", "GET", "");
+    }
 }
 
 // ServerController.shared.doGet()
