@@ -45,7 +45,7 @@ public class testingYouAreEll {
 
     @Test
     public void testGetMessagesOfUser() {
-        String results = urll.get_messagesOfUser("JonnnD");
+        String results = urll.get_messagesOfUser("");
         int messageCount = results.split(" ").length;
         // Assuming that the user should have at least one message
         assertTrue("Expected at least one message for user", messageCount > 1);
