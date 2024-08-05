@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class testingYouAreEll {
 
-    public YouAreEll urll;
+    private YouAreEll urll;
 
     @Before
     public void setUp() {
@@ -64,6 +64,7 @@ public class testingYouAreEll {
         String results = urll.sendMessageToUser("hello world", "JonnnD", "JWDiehl");
         int messageCount = results.split(",").length;
         // Assuming that sending a message to a user returns a list with 5 items
+
         assertEquals("Expected 5 messages after sending a message to user", 5, messageCount);
     }
 }
