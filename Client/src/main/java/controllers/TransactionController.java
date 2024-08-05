@@ -47,7 +47,7 @@ public class TransactionController {
     public String putId(String idtoRegister, String name, String githubName) throws IOException {
         Id tid = new Id(idtoRegister, name, githubName);
         tid = idCtrl.putId(tid);
-        return "User dupdated succesfully.";
+        return "User updated succesfully.";
     }
 
     //Retrieves a list of messages by delegating to msgCtrl

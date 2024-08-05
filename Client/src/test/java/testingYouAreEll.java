@@ -39,13 +39,13 @@ public class testingYouAreEll {
     @Test
     public void testPutMethod() throws IOException {
         String results = urll.putId("id", "name", "githubUserName");
-        String expected = "User updated successfully.";
+        String expected = "User updated succesfully.";
         assertEquals("Expected user update message", expected, results);
     }
 
     @Test
     public void testGetMessagesOfUser() {
-        String results = urll.get_messagesOfUser("");
+        String results = urll.get_messagesOfUser("haha");
         int messageCount = results.split(" ").length;
         // Assuming that the user should have at least one message
         assertTrue("Expected at least one message for user", messageCount > 1);
